@@ -1,43 +1,27 @@
-cmake_minimum_required(VERSION 3.25)
-project(
-    cpp23_modules_cmakeproject
-    VERSION 1.0.0
-    LANGUAGES CXX)
+cmake_minimum_required(VERSION 4.0.0)
+set(CMAKE_CXX_COMPILER /usr/bin/g++)
+# set(CMAKE_CXX_COMPILER /usr/bin/clang++)
+
+# Use LLVM standard library
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "d0edc3af-4c50-42ea-a356-e2862fe7a444")
+set(CMAKE_CXX_MODULE_STD 1)
 
-execute_process(
-    COMMAND ${CMAKE_SOURCE_DIR}/find_std_module.sh
-    OUTPUT_VARIABLE STD_MODULE_SOURCE
-    RESULT_VARIABLE FIND_RESULT
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+project(
+    cpp_modules_cmakeproject
+    VERSION 2.0
+    LANGUAGES CXX)
 
-if(NOT FIND_RESULT EQUAL 0)
-    message(FATAL_ERROR "The std.cc search script failed with an error. Exit code: ${SCRIPT_EXIT_CODE}")
-endif()
+add_library(custom)
 
-if(NOT EXISTS ${STD_MODULE_SOURCE})
-    message(FATAL_ERROR "std.cc not found at ${STD_MODULE_SOURCE}.")
-endif()
-
-add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/std.o
-    COMMAND ${CMAKE_CXX_COMPILER} -std=c++23 -fmodules -fsearch-include-path ${STD_MODULE_SOURCE} -c -o ${CMAKE_CURRENT_BINARY_DIR}/std.o
-    DEPENDS ${STD_MODULE_SOURCE}
-    COMMENT "Compiling std module from ${STD_MODULE_SOURCE}"
-    VERBATIM
-)
-
-add_custom_target(compile_std_module DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/std.o)
+target_sources(custom  PUBLIC  FILE_SET CXX_MODULES FILES   modules/custom.cppm)
 
 add_executable(main src/main.cpp)
-add_dependencies(main compile_std_module)
 
-target_compile_options(main PRIVATE -std=c++23 -fmodules)
-
-target_link_libraries(main ${CMAKE_CURRENT_BINARY_DIR}/std.o)
+target_link_libraries(main PRIVATE custom)
