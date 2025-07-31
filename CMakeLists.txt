@@ -5,7 +5,7 @@ set(CMAKE_CXX_COMPILER /usr/bin/g++)
 # Use LLVM standard library
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -18,10 +18,6 @@ project(
     VERSION 2.1
     LANGUAGES CXX)
 
-add_library(custom)
+add_subdirectory(lib)
 
-target_sources(custom  PUBLIC  FILE_SET CXX_MODULES FILES   modules/custom.cppm)
-
-add_executable(main src/main.cpp)
-
-target_link_libraries(main PRIVATE custom)
+add_subdirectory(src)
