@@ -33,7 +33,7 @@ cmake -G Ninja -S. -Bbuild
 cmake --build build
 ```
 
-And executable binary is located in `/build/main`.
+And executable binary is located in `/build/src/main`.
 ## Epilogue
 I hope you found this repository useful, and if you have any questions or bugs, feel free to open an Issue.
 
