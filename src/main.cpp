@@ -5,12 +5,12 @@ int main() {
     std::println("Hello, C++23 modules with std!");
 
     // From custom
-    custom::simplePrint();
+    Custom::simplePrint();
 
-    std::println("{}", custom::stringReturn());
+    std::println("{}", Custom::stringReturn());
 
     std::vector simpleVector { 1, 2, 3, 4, 5 };
-    custom::printVector(simpleVector);
+    Custom::printVector(simpleVector);
 
     return 0;
 }

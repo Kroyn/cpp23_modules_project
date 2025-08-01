@@ -15,7 +15,7 @@ set(CMAKE_CXX_MODULE_STD 1)
 
 project(
     cpp_modules_cmakeproject
-    VERSION 2.1
+    VERSION 2.1.1
     LANGUAGES CXX)
 
 add_subdirectory(lib)

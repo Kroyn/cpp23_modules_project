@@ -2,7 +2,7 @@ export module custom;
 
 import std;
 
-export namespace custom {
+export namespace Custom {
   void simplePrint() {
     std::println("Print from custom::");
   }
