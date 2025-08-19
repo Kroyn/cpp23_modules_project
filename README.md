@@ -1,6 +1,6 @@
 # C++ Modules Project Example
 This is an experimental project for educational purposes.
-Project in the C++23.
+Project in the C++26.
 
 ## Requirement
 Install CMake, Ninja and GCC.
