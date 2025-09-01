@@ -1,6 +1,6 @@
 import custom;
 import std;
-#include "config.h"
+#include "config.hpp"
 
 int main() {
     std::println("Hello, C++26 modules with std!");
