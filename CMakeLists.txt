@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.0.0)
+cmake_minimum_required(VERSION 4.0)
 set(CMAKE_CXX_COMPILER /usr/bin/g++)
 # set(CMAKE_CXX_COMPILER /usr/bin/clang++)
 
@@ -15,7 +15,7 @@ set(CMAKE_CXX_MODULE_STD 1)
 
 project(
     cpp_modules_cmakeproject
-    VERSION 2.1.1
+    VERSION 2.2.0
     LANGUAGES CXX)
 
 add_subdirectory(lib)

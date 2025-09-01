@@ -1,8 +1,10 @@
 import custom;
 import std;
+#include "config.h"
 
 int main() {
-    std::println("Hello, C++23 modules with std!");
+    std::println("Hello, C++26 modules with std!");
+    std::println("Project Version: {}", PROJECT::PROJECT_VERSION);
 
     // From custom
     Custom::simplePrint();
